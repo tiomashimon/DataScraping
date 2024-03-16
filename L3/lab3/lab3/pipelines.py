@@ -1,5 +1,7 @@
 import json
 import psycopg2
+import re
+
 
 class PostgreSQLPipeline:
     def open_spider(self, spider):
@@ -35,5 +37,7 @@ class PostgreSQLPipeline:
         connection.close()
 
     def process_item(self, item, spider):
-        self.data.append(dict(item))
+        # Очищення даних від зайвих символів та пробілів
+        item['faculty'] = re.sub(r'\s+', ' ', item['faculty']).strip()
+        item['department'] = re.sub(r'\s+', ' ', item['department']).strip()
         return item

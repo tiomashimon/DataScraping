@@ -14,8 +14,11 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 ITEM_PIPELINES = {
     'lab3.pipelines.PostgreSQLPipeline': 300,
+    'scrapy.pipelines.images.ImagesPipeline': 1,
 }
 
+
+IMAGES_STORE = 'images/'
 
 DATABASE = {
     'drivername': 'postgres',
